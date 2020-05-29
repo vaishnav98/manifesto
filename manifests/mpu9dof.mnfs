@@ -11,7 +11,7 @@
 version-major = 0
 version-minor = 1
 click-string-id = 1
-num-devices = 1
+num-devices = 2
 int-gpio-state = 1
 
 # -----------------------------------------------------------
@@ -25,6 +25,10 @@ string = mpu9dof
 [string-descriptor 2]
 string = mpu9150
 
+; driver string
+[string-descriptor 3]
+string = ak8975
+
 # -----------------------------------------------------------
 #            Manifest Device Descriptors
 # -----------------------------------------------------------
@@ -35,3 +39,9 @@ protocol = 2
 reg = 0x68
 irq = 1
 irq-type = 1
+
+; device descriptor
+[device-descriptor 2]
+driver-string-id = 3
+protocol = 5
+reg = 0x0c
