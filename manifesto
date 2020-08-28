@@ -39,6 +39,8 @@ import os.path
 import struct
 import sys
 
+DEBUG = 0
+
 ### Exception management
 class Error(Exception):
     def __init__(self, msg=''):
@@ -775,6 +777,11 @@ class MnfbGenerator(object):
     def __pack_desc(self, desc_fmt, desc_size, desc_type, *args):
         struct.pack_into(desc_fmt, self.mnfb, self.offset, desc_size, desc_type,
                 *args)
+        if DEBUG:
+            print("Descriptor Raw Data : {}".format(struct.pack(desc_fmt, desc_size, desc_type, *args)))
+            print("Descriptor Size : {}".format(struct.calcsize(desc_fmt)))
+            print("Descriptor Size with Padding : {}".format(desc_size))
+            print("Descriptor Type : {} \n".format(desc_type))
         self.__inc_offset(desc_size)
 
     def __pack_interface_desc(self, desc):
@@ -893,12 +900,17 @@ def get_args():
             help='specify an input manifest file', required=True)
     parser.add_argument('-o', '--outfile',
             help='specify an output file path', required=False)
+    parser.add_argument('-d', '--debug',
+            help='debug mode print descriptors while packing', action='store_true')
 
     return parser.parse_args()
 
 def main():
     args = get_args()
     warnings.silent = False   
+    if(args.debug):
+        global DEBUG
+        DEBUG = 1
     parser = MnfsParser()
     manifest = parser.parse_file(args.infile)
     mnfb_gen = MnfbGenerator()
