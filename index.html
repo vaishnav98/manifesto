@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>mikroBUS Add-on Board Manifest Generator</title>
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+	<link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+	<link rel="stylesheet" href="assets/css/Footer-Basic.css">
+	<link rel="stylesheet" href="assets/css/Header-Blue.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="icon" href="favicon.ico">
+</head>
+
+<body style="text-align: center;">
+	<div>
+		<div data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" class="header-blue">
+			<nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+				<div class="container-fluid"><a class="navbar-brand" href="#">mikroBUS Add-on Board
+						Manifest Generator</a><button data-toggle="collapse"
+						class="navbar-toggler" data-target="#navcol-1"><span
+							class="sr-only">Toggle navigation</span><span
+							class="navbar-toggler-icon"></span></button>
+					<div class="collapse navbar-collapse" id="navcol-1">
+						<ul class="nav navbar-nav">
+							<li class="nav-item"></li>
+						</ul>
+						<form class="form-inline mr-auto" target="_self">
+							<div class="form-group"><label for="search-field"></label><input
+									class="form-control search-field" type="search"
+									id="search-field" name="search"></div>
+						</form><span class="navbar-text"> </span>
+					</div>
+				</div>
+			</nav>
+			<div class="container hero">
+				<div class="row row-cols-3">
+					<div class="col-3">
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg text-uppercase action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="anbutton" type="button"
+							title="Toggle Analog Pin Mode">Analog Input</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg text-uppercase action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="rstbutton" type="button"
+							title="Toggle Reset Pin Mode">Reset GPIO (HIGH)
+							HIGH</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg text-uppercase action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="spicsbutton" type="button"
+							title="Toggle SPI Chip Select Pin Mode">SPI&nbsp;Chip
+							Select</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg text-uppercase action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="spisckbutton" type="button"
+							title="Toggle SPI SCK Pin Mode">SPI SCK</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="spimisobutton" type="button"
+							title="Toggle SPI MISO Pin Mode">SPI MISO</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="spimosibutton" type="button"
+							title="Toggle SPI MOSI Pin Mode">SPI MOSI</button>
+						<button class="btn btn-outline-light active btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" type="button"
+							title="+3.3V Power Pin">+3.3 V</button>
+						<button class="btn btn-outline-light active btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" type="button"
+							title="GND">GND</button>
+					</div>
+					<div class="col-12 col-lg-6 col-xl-5 offset-xl-1"><img class="device"
+							src="assets/img/mikrobus.png" width="100%"></div>
+					<div class="col-3">
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-dark btn-block btn-lg text-uppercase action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="pwmbutton" type="button"
+							title="Toggle PWM Pin Mode">PWM Output</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg text-uppercase action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="intbutton" type="button"
+							title="Toggle INT Pin Mode">Interrupt Input</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg text-uppercase action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="rxbutton" type="button"
+							title="Toggle UART RX Pin Mode">UART RX</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="txbutton" type="button"
+							title="Toggle UART TX Pin Mode">UART TX</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-dark btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="sclbutton" type="button"
+							title="Toggle I2C SCL Pin Mode">I2C SCL</button>
+						<button onclick="pinButtonClick(this.id)"
+							class="btn btn-light btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" id="sdabutton" type="button"
+							title="Toggle I2C SDA Pin Mode">I2C SDA</button>
+						<button class="btn btn-outline-light active btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" type="button"
+							title="+5V Power Pin">+5V</button>
+						<button class="btn btn-outline-light active btn-block btn-lg action-button"
+							data-toggle="tooltip" data-bs-tooltip=""
+							data-bs-hover-animate="flash" type="button"
+							title="GND">GND</button></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<form>
+						<h2 class="text-center">Add-on Board Info</h2>
+						<div class="form-group"><input id="boardname" class="form-control"
+								type="text" data-toggle="tooltip" data-bs-tooltip=""
+								name="boardname" placeholder="Board Name"
+								title="Add-on Board Name">
+							<input id="boardurl" class="form-control" type="text"
+								data-toggle="tooltip" data-bs-tooltip="" name="boardurl"
+								placeholder="Product URL"
+								title="Add-on Board Product URL">
+							<input id="boardvendor" class="form-control" type="text"
+								data-toggle="tooltip" data-bs-tooltip=""
+								name="vendorname" placeholder="Vendor Name"
+								title="Vendor Name">
+							<input id="boardkconfig" class="form-control" type="text"
+								data-toggle="tooltip" data-bs-tooltip="" name="kconfig"
+								placeholder="Kconfig"
+								title="KConfig Entry for the Device Driver(s) : https://cateee.net/lkddb/">
+						</div>
+						<label>Device Descriptor(s)</label>
+						<input class="form-control" id="devicedriverstring" type="text"
+							data-toggle="tooltip" data-bs-tooltip="" name="driverstring"
+							placeholder="Driver Device ID String"
+							title="Device ID String for the Device Driver(s) : https://cateee.net/lkddb/">
+						<select id="deviceprotocol"
+							class="form-control d-xl-flex align-items-xl-start"
+							data-toggle="tooltip" data-bs-tooltip="" name="Device Protocol"
+							value="Device Protocol" required="" title="Device Protocol">
+							<option value="3">I2C</option>
+							<option value="11">SPI</option>
+							<option value="254">PLATFORM</option>
+						</select>
+						<input id="deviceaddress" class="form-control" type="text"
+							data-toggle="tooltip" data-bs-tooltip="" name="address"
+							placeholder="Device Address/ Chip Select"
+							title="Device I2C Address or SPI Chip Select(0->CS Pin/1->RST Pin)">
+						<input id="devicemaxspeed" class="form-control" type="text"
+							data-toggle="tooltip" data-bs-tooltip="" name="maxspeed"
+							placeholder="SPI Max Speed" title="SPI Max Speed"
+							inputmode="numeric">
+
+						<select id="devicespimode"
+							class="form-control d-xl-flex align-items-xl-start"
+							data-toggle="tooltip" data-bs-tooltip="" name="SPI Mode"
+							value="SPI Mode" required="" title="SPI Mode">
+							<option value="0" selected="">SPI_MODE_0</option>
+							<option value="1">SPI_MODE_1</option>
+							<option value="2">SPI_MODE_2</option>
+							<option value="3">SPI_MODE_3</option>
+							<option value="1">SPI_MODE_CPHA</option>
+							<option value="2">SPI_MODE_CPOL</option>
+						</select>
+						<!--<div class="custom-control text-uppercase text-center custom-checkbox">-->
+						<input type="checkbox" id="deviceirq"><label>&nbsp;Device Generates
+							Interrupts?</label>
+						<select id="deviceirqgpio"
+							class="form-control d-xl-flex align-items-xl-start"
+							data-toggle="tooltip" data-bs-tooltip=""
+							name="Device Interrupt GPIO" value="Device Interrupt GPIO"
+							required="" title="Device Interrupt Pin on the mikroBUS Socket">
+							<option value="0">PWM</option>
+							<option value="1" selected="">INT</option>
+							<option value="2">RX</option>
+							<option value="3">TX</option>
+							<option value="4">SCL</option>
+							<option value="5">SDA</option>
+							<option value="6">MOSI</option>
+							<option value="7">MISO</option>
+							<option value="8">SCK</option>
+							<option value="9">CS</option>
+							<option value="10">RST</option>
+							<option value="11">AN</option>
+						</select>
+						<select id="deviceirqtype"
+							class="form-control d-xl-flex align-items-xl-start"
+							data-toggle="tooltip" data-bs-tooltip=""
+							name="Device Interrupt Type" value="Device Interrupt Type"
+							required="" title="Device Interrupt Type">
+							<option value="1" selected="">RISING</option>
+							<option value="2">FALLING</option>
+							<option value="4">HIGH LEVEL</option>
+							<option value="8">LOW LEVEL</option>
+						</select>
+						<button onclick="addDevice()" class="btn btn-primary btn-block"
+							data-toggle="tooltip" data-bs-tooltip="" type="button"
+							title="Add new Device">Add New
+							Device&nbsp;</button>
+						<label>Property Descriptor(s)</label>
+						<input id="propertyname" class="form-control" type="text"
+							data-toggle="tooltip" data-bs-tooltip="" name="propertyname"
+							placeholder="Property Name" title="Property Name String">
+						<select id="propertytype"
+							class="form-control d-xl-flex align-items-xl-start"
+							data-toggle="tooltip" data-bs-tooltip="" name="Property Type"
+							value="Property Type" required="" title="Property Type">
+							<option value="0">U8</option>
+							<option value="1">U16</option>
+							<option value="2" selected="">U32</option>
+							<option value="3">U64</option>
+						</select>
+
+						<input id="propertyvalue" class="form-control" type="text"
+							data-toggle="tooltip" data-bs-tooltip="" name="value"
+							placeholder="Property Value" title="Property Value">
+						<button onclick="addProperty()" class="btn btn-primary btn-block"
+							data-toggle="tooltip" data-bs-tooltip="" type="button"
+							title="Add new Property">Add Named
+							Property&nbsp;</button>
+
+						<label>GPIO Descriptor(s)</label>
+						<input id="gpioname" class="form-control" type="text"
+							data-toggle="tooltip" data-bs-tooltip="" name="gpioname"
+							placeholder="GPIO Name" title="GPIO Name String">
+						<select id="gpiopin" class="form-control d-xl-flex align-items-xl-start"
+							data-toggle="tooltip" data-bs-tooltip=""
+							name="Device Named GPIO" value="Device Interrupt GPIO"
+							required="" title="Device GPIO Pin on the mikroBUS Socket">
+							<option value="0">PWM</option>
+							<option value="1" selected="">INT</option>
+							<option value="2">RX</option>
+							<option value="3">TX</option>
+							<option value="4">SCL</option>
+							<option value="5">SDA</option>
+							<option value="6">MOSI</option>
+							<option value="7">MISO</option>
+							<option value="8">SCK</option>
+							<option value="9">CS</option>
+							<option value="10">RST</option>
+							<option value="11">AN</option>
+						</select>
+						<button onclick="addGPIO()" class="btn btn-primary btn-block"
+							data-toggle="tooltip" data-bs-tooltip="" type="button"
+							title="Add new Device">ADD NAMED GPIO</button>
+						<button onclick="updateConsole(true)" class="btn btn-primary btn-block"
+							data-toggle="tooltip" data-bs-tooltip="" type="button"
+							title="Generate Manifest">Generate MANIFEST</button>
+					</form>
+				</div>
+				<div class="col-md-6 text-break" style="text-align: left;">
+					<h2 class="text-center">Manifest Output</h2>
+					<code id="manifesout"><br></code>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-basic">
+		<footer>
+			<ul class="list-inline">
+				<li class="list-inline-item"><a
+						href="https://download.mikroe.com/documents/standards/mikrobus/mikrobus-standard-specification-v200.pdf">mikroBUS
+						Standard Specification</a></li>
+				<li class="list-inline-item"></li>
+				<li class="list-inline-item"><a href="https://github.com/vaishnav98/manifesto">More
+						Information</a></li>
+				<li class="list-inline-item"></li>
+				<li class="list-inline-item"></li>
+			</ul>
+		</footer>
+	</div>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/bs-init.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+
+</html>
