@@ -54,6 +54,13 @@ SPI_MODE = {
 	5: "2"
 }
 
+PROPERTY_TYPE = {
+	"U8": "0x03",
+	"U16": "0x04",
+	"U32": "0x05",
+	"U64": "0x06",
+}
+
 function pinButtonClick(buttonID) {
 	var button = document.getElementById(buttonID);
 	if (button.getAttribute("currentstate") === undefined)
@@ -109,6 +116,7 @@ function updateConsole(generate) {
 		var i2c_cport = false;
 		var spi_cport = false;
 		var string_id = 2;
+		var prop_id = 1;
 		var cport_id = 1;
 		outmanifest += ";<br>"
 		outmanifest += ";&nbsp;" + boardname.toUpperCase();
@@ -170,7 +178,7 @@ function updateConsole(generate) {
 			outmanifest += "class&nbsp;=&nbsp0x2<br><br>";
 		}
 		for (i = 0; i < board.devices.length; i++) {
-			outmanifest += "<br>[device-descriptor &nbsp;" + (i+1).toString() + "]<br>"
+			outmanifest += "<br>[device-descriptor &nbsp;" + (i + 1).toString() + "]<br>"
 			outmanifest += "driver-string-id&nbsp=&nbsp;" + (++string_id).toString() + "<br>"
 			outmanifest += "protocol&nbsp;=&nbsp;" + PROTOCOL_ID[board.devices[i].protocol] + "<br>"
 			outmanifest += "reg&nbsp;=&nbsp;" + board.devices[i].address + "<br>"
@@ -182,15 +190,32 @@ function updateConsole(generate) {
 				outmanifest += "max-speed-hz&nbsp;=&nbsp;" + board.devices[i].maxspeed.toString() + "<br>"
 				outmanifest += "mode&nbsp;=&nbsp;" + SPI_MODE[board.devices[i].mode] + "<br>"
 			}
-			if (board.properties.length > 0) {
-				outmanifest += "prop-link &nbsp;=&nbsp;<"
-				for (k = 1; k < board.properties.length; k++)
-					outmanifest += k.toString() + "&nbsp;"
+			if (board.properties.length > 1) {
+				outmanifest += "prop-link &nbsp;=&nbsp;<1><br>"
 			}
-			if (board.gpios.length > 0)
-				outmanifest += "gpio-link &nbsp;=&nbsp;2<br>"
+			if (board.gpios.length > 0) {
+				outmanifest += "gpio-link &nbsp;=&nbsp;<2><br>"
+			}
 			outmanifest += "<br>[string-descriptor &nbsp;" + string_id.toString() + "]<br>"
 			outmanifest += "string&nbsp;=&nbsp" + board.devices[i].driver + "<br><br>"
+		}
+
+		for (i = 0; i < board.properties.length; i++) {
+			outmanifest += "<br>[property-descriptor &nbsp;" + (prop_id++).toString() + "]<br>"
+			outmanifest += "name-string-id&nbsp=&nbsp;" + (++string_id).toString() + "<br>"
+			outmanifest += "type&nbsp;=&nbsp;" + PROPERTY_TYPE[board.properties[i].type] + "<br>"
+			outmanifest += "value&nbsp;=<&nbsp;" + board.properties[i].value + "&nbsp;><br><br>"
+			outmanifest += "<br>[string-descriptor &nbsp;" + string_id.toString() + "]<br>"
+			outmanifest += "string&nbsp;=&nbsp" + board.properties[i].name + "<br><br>"
+		}
+
+		for (i = 0; i < board.gpios.length; i++) {
+			outmanifest += "<br>[property-descriptor &nbsp;" + (prop_id++).toString() + "]<br>"
+			outmanifest += "name-string-id&nbsp=&nbsp;" + (++string_id).toString() + "<br>"
+			outmanifest += "type&nbsp;=&nbsp;" + PROPERTY_TYPE[board.gpios[i].type] + "<br>"
+			outmanifest += "value&nbsp;=<&nbsp;" + board.gpios[i].value + "&nbsp;><br><br>"
+			outmanifest += "<br>[string-descriptor &nbsp;" + string_id.toString() + "]<br>"
+			outmanifest += "string&nbsp;=&nbsp" + board.gpios[i].name + "<br><br>"
 		}
 
 	}
@@ -239,11 +264,12 @@ function addProperty() {
 
 function addGPIO() {
 	var gpioname = document.getElementById("gpioname").value;
-	var gpiopin = document.getElementById("gpiopin").options[document.getElementById("gpiopin").selectedIndex].text;
+	var gpiopin = document.getElementById("gpiopin").selectedIndex;
 
 	board["gpios"].push({
 		"name": gpioname,
-		"pin": gpiopin
+		"type": "U8",
+		"value": gpiopin
 	})
 	updateConsole(false);
 }
